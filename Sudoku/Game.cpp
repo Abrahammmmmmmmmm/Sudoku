@@ -52,6 +52,10 @@ void Game::showMainGameWindow()
 	vector<vector<int>> board(9, vector<int>(9));
 	newSudoku = new Sudoku(board);
 	newSudoku->generateGameBoard(difficulty);
+	newSudoku->showGameBoard();
+	cout << endl;
+	cout << "------------------------" << endl;
+	cout << endl;
 	newSudoku->eraseRandomGrids(eraseNumber);
 	newSudoku->showGameBoard();
 }
