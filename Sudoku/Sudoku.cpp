@@ -1,21 +1,22 @@
 #include "Sudoku.h"
 #include <iostream>
-#include <vector>
-#include <unordered_map>
 #include <random> 
 #include <set>
 
-Sudoku::Sudoku(const vector<vector<int>>& _board) : board(9, vector<int>(9))
+
+//拷贝构造函数
+Sudoku::Sudoku(const vector<vector<int>>& _board) : board(9, vector<int>(9))        
 {
     // Initialize Sudoku game board
     for (int i = 0; i < 9; i++)
         for (int j = 0; j < 9; j++)
             board[i][j] = _board[i][j];
+
 }
 
-void Sudoku::generateGameBoard(int difficulty)
+// 生成一个随机的数独游戏盘面
+void Sudoku::generateGameBoard()
 {
-    // 生成一个随机的数独游戏盘面
     char map_pattern[10][10] = {
         "ighcabfde",
         "cabfdeigh",
@@ -48,11 +49,12 @@ void Sudoku::generateGameBoard(int difficulty)
             board[i][j] = hash_map[map_pattern[i][j]];
         }
     }
+    ansBoard = board;
 }
 
+// 显示数独游戏盘面
 void Sudoku::showGameBoard()
 {
-    // 显示数独游戏盘面
     for (int i = 0; i < 9; i++)
     {
         for (int j = 0; j < 9; j++)
@@ -63,9 +65,9 @@ void Sudoku::showGameBoard()
     }
 }
 
+
 void Sudoku::eraseRandomGrids(int eraseNumber)
 {
-    // 随机擦除一定数量的格子
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> dis(0, 8);
